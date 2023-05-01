@@ -1,0 +1,2 @@
+chcp 1251
+GodographCalculator.exe
