@@ -50,9 +50,39 @@ void RecordGodographDataValues
 	
 	// II. Запись Surfer-ориентированных файлов
 	
-	// 1. Запись в файл информации о пластах
+	// 1. Запись в файл информации о пластах 
+	/*	Оптимизирован под добавление с помощью инструмента Base map */
+	FILE *FilePointerSurf_Form = fopen(SURFER_FORMINFO_FILE_NAME, "w");
+	
+	// Добавление линии поверхности
+	fprintf(FilePointerExc, "2\t1\n");
+	fprintf(FilePointerExc, "0\t%lf\n", 0.0);
+	fprintf(FilePointerExc, "1\t%lf\n", 0.0);
+	
+	// Счётчик глубин залегания пластов
+	double DepthCounter = 0.0;
+	
+	// Добавление линий 
+	for (int c = 0; c < FormationsCount - 1; c++) 
+	{
+		DepthCounter += FormationsMassive[c].FormationCapacity;
+		fprintf(FilePointerExc, "2\t1\n");
+		fprintf(FilePointerExc, "0\t%lf\n", DepthCounter);
+		fprintf(FilePointerExc, "1\t%lf\n", DepthCounter);
+	} 
+	
+	fclose(FilePointerSurf_Form);
 	
 	// 2. Запись в файл расчитанных данных
+	/*	Оптимизирован под добавление с помощью инструмента Grid Data*/
+	FILE *FilePointerSurf_Data = fopen(SURFER_DATAINFO_FILE_NAME, "w");
+	
+	for (int c = 0; c < ExplorationPointsCount; c++) 
+	{
+		fprintf(FilePointerExc, "%lf\t%lf\t%lf\n", GopographDataMassive[c].Depth, CoordY, GopographDataMassive[c].ArrivalTime);
+	}
+	
+	fclose(FilePointerSurf_Data);
 }
 
 #endif
