@@ -49,6 +49,18 @@ int main()
 		printf("\nВведите скорость распространения акустической волны пласта (м/с): ");
 		scanf("%lf", &LastFormationAcousticSpeed);
 		
+		// Ввод координаты Y (для Surfer)
+		double Coord_Y;
+		printf("\nВведите координату Y (для Surfer): ");
+		scanf("%lf", &Coord_Y);
+		
+		// Инициализация одноэлементного массива экземпляров структур TFormation
+		/*	В целях универсализации процедуры вывода поля экземпляра структуры
+			заданы равными нулю */
+		TFormation FormationsMassive[1];
+		FormationsMassive[0].FormationCapacity = 0;
+		FormationsMassive[0].FormationAcousticSpeed = 0;
+		
 		// Инициализация массива структур с определённым количеством элементов
 		int ExplorationPointsCount = WellDepth / StepBySeismicSpit;
 		TGodographData GopographDataMassive[ExplorationPointsCount];
@@ -67,10 +79,18 @@ int main()
 									GopographDataMassive
 								 );
 		RecordGodographDataValues (
+									// Скорость АВ в последнем (!) пласте
+									LastFormationAcousticSpeed,
+									// Количество пластов с учётом последнего пласта
+									FormationsCount,
+									// Массив с инфорамацией о пластах
+									FormationsMassive,
 									// Кол-во точек наблюдений
 									ExplorationPointsCount,
 									// Массив данных
-									GopographDataMassive
+									GopographDataMassive,
+									// Координата Y (для Surfer)
+									Coord_Y
 								  );
 		// Вывод данных в консоль по выбору пользователя
 		int choise = 0;						  
@@ -129,6 +149,11 @@ int main()
 	printf("\nЗначение распространения акустической волны для последнего пласта (м/с): ");
 	scanf("%lf", &LastFormationAcousticSpeed);
 	
+	// Ввод координаты Y (для Surfer)
+	double Coord_Y;
+	printf("\nВведите координату Y (для Surfer): ");
+	scanf("%lf", &Coord_Y);
+	
 	// Инициализация массива структур с определённым количеством элементов
 	int ExplorationPointsCount = WellDepth / StepBySeismicSpit;
 	TGodographData GopographDataMassive[ExplorationPointsCount];
@@ -151,11 +176,19 @@ int main()
 							GopographDataMassive
 					   );
 	RecordGodographDataValues (
-								// Кол-во точек наблюдений
-								ExplorationPointsCount,
-								// Массив данных
-								GopographDataMassive
-							  );
+									// Скорость АВ в последнем (!) пласте
+									LastFormationAcousticSpeed,
+									// Количество пластов с учётом последнего пласта
+									FormationsCount,
+									// Массив с инфорамацией о пластах
+									FormationsMassive,
+									// Кол-во точек наблюдений
+									ExplorationPointsCount,
+									// Массив данных
+									GopographDataMassive,
+									// Координата Y (для Surfer)
+									Coord_Y
+								  );
 	// Вывод данных в консоль по выбору пользователя
 	int choise = 0;						  
 	printf("\nВывести данные на экран? Если да, введите 1: ");

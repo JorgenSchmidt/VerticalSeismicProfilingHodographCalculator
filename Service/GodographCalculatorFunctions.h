@@ -19,7 +19,6 @@ void CalculateGodographForOne (
 }
 
 // Процедура расчёта значений годографа для 2 и больше пластов
-
 void CalculateGodograph (
 							// Шаг по скважине
 							double StepBySeismicSpit, 
