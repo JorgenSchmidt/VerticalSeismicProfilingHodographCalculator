@@ -1,7 +1,10 @@
 #ifndef GodographCalculatorFunctions
 #define GodographCalculatorFunctions
 
+#include <math.h> 
+
 #include "../Core/Structures.h"
+#include "../Core/AppConfiguration.h"
 
 // Процедура расчёта значений годографа для единичного пласта
 void CalculateGodographForOne (
@@ -15,7 +18,17 @@ void CalculateGodographForOne (
 								TGodographData *GopographDataMassive
 							  ) 
 {
-	printf("\nCalculateGodographForOne proc isnt implemented");
+	double Depth = 0.0;
+	for (int c = 0; c < ExplorationPointsCount; c++) 
+	{
+		// Расчёт значений
+		Depth = round((Depth + StepBySeismicSpit) * pow(10, ROUND_BY))/pow(10, ROUND_BY);
+		double ArrivalTime = Depth / LastFormationAcousticSpeed;
+		
+		// Присваивание рассчитанных значений элементам массива экземпляров структуры TGodographData
+		GopographDataMassive[c].Depth = Depth;
+		GopographDataMassive[c].ArrivalTime = ArrivalTime;
+	}
 }
 
 // Процедура расчёта значений годографа для 2 и больше пластов
