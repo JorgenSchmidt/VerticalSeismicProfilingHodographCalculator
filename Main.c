@@ -117,6 +117,7 @@ int main()
 		в математической модели глубины как таковой нет,
 		потому упомянутый пласт содержит отдельную переменную
 		для скорости распространения АВ в нём*/
+	double DepthCounter = 0.0;
 	TFormation FormationsMassive[FormationsCount-1];
 	
 	// Заполнение массива FormationsMassive
@@ -141,6 +142,9 @@ int main()
 			return 0;
 		}
 		
+		// Для вычисления глубины залегания подошвы предпоследнего пласта
+		DepthCounter += DFormationCapacity;
+		
 		// Присваивание значений массиву экземпляров структуры TFormation
 		FormationsMassive[Counter].FormationCapacity = DFormationCapacity;
 		FormationsMassive[Counter].FormationAcousticSpeed = DFormationAcousticSpeed;
@@ -148,6 +152,16 @@ int main()
 	// Ввод значения скорости распространения акустической волны для последнего слоя	
 	printf("\nЗначение распространения акустической волны для последнего пласта (м/с): ");
 	scanf("%lf", &LastFormationAcousticSpeed);
+	
+	// Проверка на пересечение скважиной последнего пласта
+	/*	Если глубина скважины не превышает значение глубины залегания 
+		подошвы предпоследнего пласта, программа завершается*/
+	if (WellDepth <= DepthCounter) 
+	{
+		printf("Скважина не пересекает последний пласт. ");
+		getch();
+		return 0;
+	}
 	
 	// Ввод координаты Y (для Surfer)
 	double Coord_Y;
