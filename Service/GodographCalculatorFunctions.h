@@ -19,11 +19,12 @@ void CalculateGodographForOne (
 							  ) 
 {
 	double Depth = 0.0;
+	double ArrivalTime = 0.0;
 	for (int c = 0; c < ExplorationPointsCount; c++) 
 	{
 		// Расчёт значений
 		Depth = round((Depth + StepBySeismicSpit) * pow(10, ROUND_BY))/pow(10, ROUND_BY);
-		double ArrivalTime = Depth / LastFormationAcousticSpeed;
+		ArrivalTime = Depth / LastFormationAcousticSpeed;
 		
 		// Присваивание рассчитанных значений элементам массива экземпляров структуры TGodographData
 		GopographDataMassive[c].Depth = Depth;
@@ -47,7 +48,65 @@ void CalculateGodograph (
 							TGodographData *GopographDataMassive
 						) 
 {
-	printf("\nCalculateGodograph proc isnt implemented");
+	// Инициализация переменных
+	int FormationCounter = 0;
+	double Depth = 0.0;
+	double DepthFormationCounter = 0.0;
+	double ArrivalTime = 0.0;
+	double CurrentFormationDepth = FormationsMassive[0].FormationCapacity;
+	
+	// Расчёт значений
+	for (int c = 0; c < ExplorationPointsCount; c++) 
+	{
+		/* 	Расчёт глубины залегания датчика и проверка на пересечение 
+			текущего пласта (определяется переменной FormationCounter) 
+			рассматриваемой точкой наблюдения */
+		Depth = round((Depth + StepBySeismicSpit) * pow(10, ROUND_BY))/pow(10, ROUND_BY);
+		if ( Depth > CurrentFormationDepth) 
+		{
+			if (FormationCounter < FormationsCount - 2) 
+			{
+				FormationCounter++;
+				CurrentFormationDepth += FormationsMassive[FormationCounter].FormationCapacity;
+			}
+			else 
+			{
+				FormationCounter = FormationsCount - 1;
+			}
+		}
+		
+		// Расчёт времени прихода АВ к текущей точке наблюдений
+		if (FormationCounter != 0) 
+		{
+			// Расчёт АВ для 2 и более пластов
+			ArrivalTime = 0;
+			/* 	Дословный перевод curFormation - current formation - текущий пласт */
+			for (int curFormation = 0; curFormation < FormationCounter; curFormation++) 
+			{
+				ArrivalTime += FormationsMassive[curFormation].FormationCapacity / FormationsMassive[curFormation].FormationAcousticSpeed;
+			}
+			
+			//
+			if (FormationCounter < FormationsCount - 1) 
+			{
+				ArrivalTime += 	(Depth - (CurrentFormationDepth - FormationsMassive[FormationCounter].FormationCapacity))
+								/ 
+								FormationsMassive[FormationCounter].FormationAcousticSpeed;
+				}
+			else 
+			{
+				ArrivalTime += 	(Depth - CurrentFormationDepth)
+								/ 
+								LastFormationAcousticSpeed;
+			}
+		}
+		else 
+		{
+			ArrivalTime = Depth / FormationsMassive[0].FormationAcousticSpeed;
+		}
+		GopographDataMassive[c].Depth = Depth;
+		GopographDataMassive[c].ArrivalTime = ArrivalTime;
+	}
 }
 
 #endif

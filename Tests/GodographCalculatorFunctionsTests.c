@@ -51,7 +51,7 @@
 
 // Процедура вывода разницы между значениями экспериментального и тестового массивов
 	/*	Тест можно назвать удачным, если разнос в значениях 
-		не превышает 0.001 по модулю */
+		не превышает 0,00001 по модулю */
 	
 	/*	Для удобства будут проверяться только первые 5 и 
 	последние 5 результатов тестов.
@@ -158,8 +158,8 @@ int main()
 	test_1();
 	test_2();
 	test_3();
-	//test_4();
-	//test_5();
+	test_4();
+	test_5();
 	getch();
 	return 0;
 }
@@ -277,7 +277,7 @@ void test_2() // Функция CalculateGodographForOne
 	дробь, которая без искажений не переводится в двоичную форму, как
 	например 0.9 (при переводе 0.9 в из десятичной формы записи в 
 	двоичную получается бесконечная дробь в периоде 0.11100(1100))*/
-void test_3() 
+void test_3() // Функция CalculateGodographForOne
 {
 	printf("\nТест №3");
 	// Тестовые данные
@@ -324,6 +324,134 @@ void test_3()
 								ExplorationPointsCount, 
 								GopographDataMassive
 							);
+	
+	// Вывод разницы между значениями экспериментального и тестового массивов
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+}
+
+void test_4 () // Функция CalculateGodograph
+{
+	printf("\nТест №4");
+	// Тестовые данные
+	int TestPointsCount = 30;
+	TGodographData TestDataMassive[TestPointsCount];
+	TestDataMassive[0].Depth = 4.9;
+	TestDataMassive[1].Depth = 9.8;
+	TestDataMassive[2].Depth = 14.7;
+	TestDataMassive[3].Depth = 19.6;
+	TestDataMassive[4].Depth = 24.5;
+	TestDataMassive[25].Depth = 127.4;
+	TestDataMassive[26].Depth = 132.3;
+	TestDataMassive[27].Depth = 137.2;
+	TestDataMassive[28].Depth = 142.1;
+	TestDataMassive[29].Depth = 147;
+	TestDataMassive[0].ArrivalTime = 0.006533333;
+	TestDataMassive[1].ArrivalTime = 0.013066667;
+	TestDataMassive[2].ArrivalTime = 0.0196;
+	TestDataMassive[3].ArrivalTime = 0.026133333;
+	TestDataMassive[4].ArrivalTime = 0.032666667;
+	TestDataMassive[25].ArrivalTime = 0.156166667;
+	TestDataMassive[26].ArrivalTime = 0.16025;
+	TestDataMassive[27].ArrivalTime = 0.164333333;
+	TestDataMassive[28].ArrivalTime = 0.168416667;
+	TestDataMassive[29].ArrivalTime = 0.1725;
+	
+	// Геометрия участка наблюдений
+	double WellDepth = 150;
+	double StepBySeismicSpit = 4.9;
+	
+	// Параметры моделируемой среды
+	int FormationsCount = 2;
+	TFormation FormationsMassive[FormationsCount-1];
+	FormationsMassive[0].FormationCapacity = 100;
+	FormationsMassive[0].FormationAcousticSpeed = 750;
+	double LastFormationAcousticSpeed = 1200;
+	
+	// Инициализация и расчёт значений времени прихода АВ
+	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
+	TGodographData GopographDataMassive[ExplorationPointsCount];
+	
+	// Обработка исключительных случаев
+	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
+	{
+		return;
+	}
+	
+	// Вызов тестируемой функции
+	CalculateGodograph	(
+							StepBySeismicSpit, 
+							LastFormationAcousticSpeed,
+							FormationsCount,
+							FormationsMassive,
+							ExplorationPointsCount,
+							GopographDataMassive
+						);
+	
+	// Вывод разницы между значениями экспериментального и тестового массивов
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+}
+
+void test_5() // Функция CalculateGodograph
+{
+	printf("\nТест №5");
+	// Тестовые данные
+	int TestPointsCount = 70;
+	TGodographData TestDataMassive[TestPointsCount];
+	TestDataMassive[0].Depth = 9.9;
+	TestDataMassive[1].Depth = 19.8;
+	TestDataMassive[2].Depth = 29.7;
+	TestDataMassive[3].Depth = 39.6;
+	TestDataMassive[4].Depth = 49.5;
+	TestDataMassive[65].Depth = 653.4;
+	TestDataMassive[66].Depth = 663.3;
+	TestDataMassive[67].Depth = 673.4;
+	TestDataMassive[68].Depth = 683.1;
+	TestDataMassive[69].Depth = 693;
+	TestDataMassive[0].ArrivalTime = 0.0099;
+	TestDataMassive[1].ArrivalTime = 0.0198;
+	TestDataMassive[2].ArrivalTime = 0.0297;
+	TestDataMassive[3].ArrivalTime = 0.0396;
+	TestDataMassive[4].ArrivalTime = 0.0495;
+	TestDataMassive[65].ArrivalTime = 0.772714286;
+	TestDataMassive[66].ArrivalTime = 0.786857143;
+	TestDataMassive[67].ArrivalTime = 0.801;
+	TestDataMassive[68].ArrivalTime = 0.815142857;
+	TestDataMassive[69].ArrivalTime = 0.829285714;
+	
+	// Геометрия участка наблюдений
+	double WellDepth = 700;
+	double StepBySeismicSpit = 9.9;
+	
+	// Параметры моделируемой среды
+	int FormationsCount = 4;
+	TFormation FormationsMassive[FormationsCount-1];
+	FormationsMassive[0].FormationCapacity = 100;
+	FormationsMassive[0].FormationAcousticSpeed = 1000;
+	FormationsMassive[1].FormationCapacity = 200;
+	FormationsMassive[1].FormationAcousticSpeed = 500;
+	FormationsMassive[2].FormationCapacity = 250;
+	FormationsMassive[2].FormationAcousticSpeed = 2000;
+	double LastFormationAcousticSpeed = 700;
+	
+	// Инициализация и расчёт значений времени прихода АВ
+	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
+	TGodographData GopographDataMassive[ExplorationPointsCount];
+	
+	// Обработка исключительных случаев
+	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
+	{
+		return;
+	}
+	
+	// Вызов тестируемой функции
+	CalculateGodograph	(
+							StepBySeismicSpit, 
+							LastFormationAcousticSpeed,
+							FormationsCount,
+							FormationsMassive,
+							ExplorationPointsCount,
+							GopographDataMassive
+						);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
 	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);

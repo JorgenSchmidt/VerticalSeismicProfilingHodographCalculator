@@ -1,0 +1,3 @@
+chcp 1251
+gcc GodographCalculatorFunctionsTests.c -o output/GodographCalculatorTestsOutput/tests
+pause
