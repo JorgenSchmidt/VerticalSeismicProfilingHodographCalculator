@@ -1,0 +1,5 @@
+chcp 1251
+cd bin
+Output_for_Excel.txt
+Output_for_Surfer_datainfo.txt
+Output_for_Surfer_forminfo.txt
