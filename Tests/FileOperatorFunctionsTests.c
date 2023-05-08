@@ -68,6 +68,7 @@ void test_1 ()
 	Formations[0].FormationAcousticSpeed = 500;
 	
 	// Снятые показания
+	/*	Дословный перевод e_data exploration data*/
 	int countData = 6;
 	TGodographData e_data[countData];
 	e_data[0].Depth = 25;

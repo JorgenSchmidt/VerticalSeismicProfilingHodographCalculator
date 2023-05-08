@@ -73,7 +73,7 @@ int main()
 		
 		// Инициализация массива структур с определённым количеством элементов
 		int ExplorationPointsCount = WellDepth / StepBySeismicSpit;
-		TGodographData GopographDataMassive[ExplorationPointsCount];
+		TGodographData GodographDataMassive[ExplorationPointsCount];
 		
 		/* 	Ссылку на массив структур передавать не стоит, 
 			так как массив струтур уже содержит ссылку на 
@@ -86,7 +86,7 @@ int main()
 									// Кол-во точек наблюдений
 									ExplorationPointsCount,
 									// Массив данных
-									GopographDataMassive
+									GodographDataMassive
 								 );
 		RecordGodographDataValues (
 									// Скорость АВ в последнем (!) пласте
@@ -98,7 +98,7 @@ int main()
 									// Кол-во точек наблюдений
 									ExplorationPointsCount,
 									// Массив данных
-									GopographDataMassive,
+									GodographDataMassive,
 									// Координата Y (для Surfer)
 									Coord_Y
 								  );
@@ -112,7 +112,7 @@ int main()
 							// Кол-во точек наблюдений
 							ExplorationPointsCount,
 							// Массив с информацией о рассчитанных значениях
-							GopographDataMassive
+							GodographDataMassive
 						   ); 
 		}
 		getch();
@@ -189,7 +189,7 @@ int main()
 	
 	// Инициализация массива структур с определённым количеством элементов
 	int ExplorationPointsCount = WellDepth / StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Расчёт годографа и вывод его в файл
 	CalculateGodograph (
@@ -206,7 +206,7 @@ int main()
 							// Кол-во точек наблюдений
 							ExplorationPointsCount,
 							// Массив с информацией о рассчитанных значениях
-							GopographDataMassive
+							GodographDataMassive
 					   );
 	RecordGodographDataValues (
 									// Скорость АВ в последнем (!) пласте
@@ -218,7 +218,7 @@ int main()
 									// Кол-во точек наблюдений
 									ExplorationPointsCount,
 									// Массив данных
-									GopographDataMassive,
+									GodographDataMassive,
 									// Координата Y (для Surfer)
 									Coord_Y
 								  );
@@ -232,7 +232,7 @@ int main()
 						// Кол-во точек наблюдений
 						ExplorationPointsCount,
 						// Массив с информацией о рассчитанных значениях
-						GopographDataMassive
+						GodographDataMassive
 					   ); 
 	}
 		

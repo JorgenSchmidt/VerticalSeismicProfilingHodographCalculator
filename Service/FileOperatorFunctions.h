@@ -22,7 +22,7 @@ void RecordGodographDataValues
 									// Кол-во точек наблюдений
 									int ExplorationPointsCount,
 									// Массив с информацией о рассчитанных значениях
-									TGodographData *GopographDataMassive,
+									TGodographData *GodographDataMassive,
 									// Координата Y (для Surfer)
 									double CoordY
 								) 
@@ -44,7 +44,7 @@ void RecordGodographDataValues
 	fprintf(FilePointerExc, "№ пикета\tГлубина точки измерения (м)\tВремя прихода волны к пикету (с)\n");
 	for (int c = 0; c < ExplorationPointsCount; c++) 
 	{
-		fprintf(FilePointerExc, "%i\t%lf\t%lf\n", c+1, GopographDataMassive[c].Depth, GopographDataMassive[c].ArrivalTime);
+		fprintf(FilePointerExc, "%i\t%lf\t%lf\n", c+1, GodographDataMassive[c].Depth, GodographDataMassive[c].ArrivalTime);
 	}
 	fclose(FilePointerExc);
 	
@@ -79,7 +79,7 @@ void RecordGodographDataValues
 	
 	for (int c = 0; c < ExplorationPointsCount; c++) 
 	{
-		fprintf(FilePointerExc, "%lf\t%lf\t%lf\n", GopographDataMassive[c].Depth, CoordY, GopographDataMassive[c].ArrivalTime);
+		fprintf(FilePointerExc, "%lf\t%lf\t%lf\n", GodographDataMassive[c].Depth, CoordY, GodographDataMassive[c].ArrivalTime);
 	}
 	
 	fclose(FilePointerSurf_Data);

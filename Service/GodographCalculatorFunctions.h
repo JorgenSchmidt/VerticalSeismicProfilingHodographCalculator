@@ -15,7 +15,7 @@ void CalculateGodographForOne (
 								// Кол-во точек наблюдений
 								int ExplorationPointsCount,
 								// Массив данных
-								TGodographData *GopographDataMassive
+								TGodographData *GodographDataMassive
 							  ) 
 {
 	double Depth = 0.0;
@@ -27,8 +27,8 @@ void CalculateGodographForOne (
 		ArrivalTime = Depth / LastFormationAcousticSpeed;
 		
 		// Присваивание рассчитанных значений элементам массива экземпляров структуры TGodographData
-		GopographDataMassive[c].Depth = Depth;
-		GopographDataMassive[c].ArrivalTime = ArrivalTime;
+		GodographDataMassive[c].Depth = Depth;
+		GodographDataMassive[c].ArrivalTime = ArrivalTime;
 	}
 }
 
@@ -45,7 +45,7 @@ void CalculateGodograph (
 							// Кол-во точек наблюдений
 							int ExplorationPointsCount,
 							// Массив с информацией о рассчитанных значениях
-							TGodographData *GopographDataMassive
+							TGodographData *GodographDataMassive
 						) 
 {
 	// Инициализация переменных
@@ -104,8 +104,8 @@ void CalculateGodograph (
 		{
 			ArrivalTime = Depth / FormationsMassive[0].FormationAcousticSpeed;
 		}
-		GopographDataMassive[c].Depth = Depth;
-		GopographDataMassive[c].ArrivalTime = ArrivalTime;
+		GodographDataMassive[c].Depth = Depth;
+		GodographDataMassive[c].ArrivalTime = ArrivalTime;
 	}
 }
 

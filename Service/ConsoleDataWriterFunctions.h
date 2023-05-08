@@ -7,12 +7,12 @@ void WriteDataValues(
 						// Кол-во точек наблюдений
 						int ExplorationPointsCount,
 						// Массив с информацией о рассчитанных значениях
-						TGodographData *GopographDataMassive
+						TGodographData *GodographDataMassive
 					) 
 {
 	for (int c = 0; c < ExplorationPointsCount; c++) 
 	{
-		printf("Пикет№%i.\t%lf\t%lf\n", c+1, GopographDataMassive[c].Depth, GopographDataMassive[c].ArrivalTime);
+		printf("Пикет№%i.\t%lf\t%lf\n", c+1, GodographDataMassive[c].Depth, GodographDataMassive[c].ArrivalTime);
 	}
 }
 

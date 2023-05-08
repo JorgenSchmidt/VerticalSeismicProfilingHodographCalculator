@@ -7,7 +7,7 @@
 								// Кол-во точек наблюдений
 								int ExplorationPointsCount,
 								// Массив данных
-								TGodographData *GopographDataMassive
+								TGodographData *GodographDataMassive
 							  )
 	void CalculateGodograph (
 							// Шаг по скважине
@@ -21,7 +21,7 @@
 							// Кол-во точек наблюдений
 							int ExplorationPointsCount,
 							// Массив с информацией о рассчитанных значениях
-							TGodographData *GopographDataMassive
+							TGodographData *GodographDataMassive
 						) 
 */
 
@@ -63,7 +63,7 @@
 void CheckDataByDifference 	(
 								int ExplorationPointsCount,
 								TGodographData *TestDataMassive,
-								TGodographData *GopographDataMassive
+								TGodographData *GodographDataMassive
 							) 
 {
 	if (ExplorationPointsCount <= 9) 
@@ -78,22 +78,22 @@ void CheckDataByDifference 	(
 	{
 		double DifferenceDepth = 
 				TestDataMassive[c].Depth 
-				- GopographDataMassive[c].Depth ;
+				- GodographDataMassive[c].Depth ;
 		double DifferenceArrival = 
 				TestDataMassive[c].ArrivalTime 
-				- GopographDataMassive[c].ArrivalTime;
+				- GodographDataMassive[c].ArrivalTime;
 		printf("\n%i. Глубина точки наблюдения:", c+1);
 		printf(
 				"\n Т: %lf, Э: %lf, Р: %lf", 
 				TestDataMassive[c].Depth,
-				GopographDataMassive[c].Depth,
+				GodographDataMassive[c].Depth,
 				DifferenceDepth
 			  );
 		printf("\nВремя прихода: ");
 		printf(
 				"\n Т: %lf, Э: %lf, Р: %lf\n", 
 				TestDataMassive[c].ArrivalTime,
-				GopographDataMassive[c].ArrivalTime,
+				GodographDataMassive[c].ArrivalTime,
 				DifferenceArrival
 			  );
 		if (DifferenceDepth != 0 || DifferenceArrival != 0) 
@@ -105,22 +105,22 @@ void CheckDataByDifference 	(
 	{
 		double DifferenceDepth = 
 				TestDataMassive[c].Depth 
-				- GopographDataMassive[c].Depth ;
+				- GodographDataMassive[c].Depth ;
 		double DifferenceArrival = 
 				TestDataMassive[c].ArrivalTime 
-				- GopographDataMassive[c].ArrivalTime;
+				- GodographDataMassive[c].ArrivalTime;
 		printf("\n%i. Глубина точки наблюдения:", c+1);
 		printf(
 				"\n Т: %lf, Э: %lf, Р: %lf", 
 				TestDataMassive[c].Depth,
-				GopographDataMassive[c].Depth,
+				GodographDataMassive[c].Depth,
 				DifferenceDepth
 			  );
 		printf("\nВремя прихода: ");
 		printf(
 				"\n Т: %lf, Э: %lf, Р: %lf\n", 
 				TestDataMassive[c].ArrivalTime,
-				GopographDataMassive[c].ArrivalTime,
+				GodographDataMassive[c].ArrivalTime,
 				DifferenceArrival
 			  );
 		if (DifferenceDepth != 0 || DifferenceArrival != 0) 
@@ -198,7 +198,7 @@ void test_1() // Функция CalculateGodographForOne
 	double LastFormationAcousticSpeed = 500;
 	
 	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Обработка исключительных случаев
 	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
@@ -211,11 +211,11 @@ void test_1() // Функция CalculateGodographForOne
 								StepBySeismicSpit, 
 								LastFormationAcousticSpeed, 
 								ExplorationPointsCount, 
-								GopographDataMassive
+								GodographDataMassive
 							);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
-	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GodographDataMassive);
 }
 
 void test_2() // Функция CalculateGodographForOne
@@ -251,7 +251,7 @@ void test_2() // Функция CalculateGodographForOne
 	double LastFormationAcousticSpeed = 600;
 	
 	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Обработка исключительных случаев
 	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
@@ -264,11 +264,11 @@ void test_2() // Функция CalculateGodographForOne
 								StepBySeismicSpit, 
 								LastFormationAcousticSpeed, 
 								ExplorationPointsCount, 
-								GopographDataMassive
+								GodographDataMassive
 							);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
-	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GodographDataMassive);
 }
 
 /*	Данный тест был введён специально для тестирования процедуры
@@ -309,7 +309,7 @@ void test_3() // Функция CalculateGodographForOne
 	double StepBySeismicSpit = 3.9;
 	double LastFormationAcousticSpeed = 550;
 	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Обработка исключительных случаев
 	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
@@ -322,11 +322,11 @@ void test_3() // Функция CalculateGodographForOne
 								StepBySeismicSpit, 
 								LastFormationAcousticSpeed, 
 								ExplorationPointsCount, 
-								GopographDataMassive
+								GodographDataMassive
 							);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
-	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GodographDataMassive);
 }
 
 void test_4 () // Функция CalculateGodograph
@@ -369,7 +369,7 @@ void test_4 () // Функция CalculateGodograph
 	
 	// Инициализация и расчёт значений времени прихода АВ
 	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Обработка исключительных случаев
 	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
@@ -384,11 +384,11 @@ void test_4 () // Функция CalculateGodograph
 							FormationsCount,
 							FormationsMassive,
 							ExplorationPointsCount,
-							GopographDataMassive
+							GodographDataMassive
 						);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
-	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GodographDataMassive);
 }
 
 void test_5() // Функция CalculateGodograph
@@ -435,7 +435,7 @@ void test_5() // Функция CalculateGodograph
 	
 	// Инициализация и расчёт значений времени прихода АВ
 	int ExplorationPointsCount = WellDepth/StepBySeismicSpit;
-	TGodographData GopographDataMassive[ExplorationPointsCount];
+	TGodographData GodographDataMassive[ExplorationPointsCount];
 	
 	// Обработка исключительных случаев
 	if (CheckMassiveSizes(TestPointsCount, ExplorationPointsCount)) 
@@ -450,9 +450,9 @@ void test_5() // Функция CalculateGodograph
 							FormationsCount,
 							FormationsMassive,
 							ExplorationPointsCount,
-							GopographDataMassive
+							GodographDataMassive
 						);
 	
 	// Вывод разницы между значениями экспериментального и тестового массивов
-	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GopographDataMassive);
+	CheckDataByDifference(ExplorationPointsCount, TestDataMassive, GodographDataMassive);
 }
