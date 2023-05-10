@@ -80,6 +80,8 @@ void CalculateGodograph (
 		{
 			// Расчёт АВ и глубины залегания сейсмодатчика для второго и далее по счёту пластов
 			ArrivalTime = 0;
+			// Расчёт времени прихода для предыдущих пластов так, будто датчик находится
+			// на кровле текущего пласта
 			/* 	Дословный перевод curFormation - current formation - текущий пласт */
 			for (int curFormation = 0; curFormation < FormationCounter; curFormation++) 
 			{
@@ -106,7 +108,7 @@ void CalculateGodograph (
 		}
 		else 
 		{
-			// Расчёт АВ и глубины залегания сейсмодатчика для первого пласта
+			// Расчёт АВ для первого пласта
 			ArrivalTime = Depth / FormationsMassive[0].FormationAcousticSpeed;
 		}
 		// Присвоение текущему экземпляру массива структуры TGodographData расчитанных значений
