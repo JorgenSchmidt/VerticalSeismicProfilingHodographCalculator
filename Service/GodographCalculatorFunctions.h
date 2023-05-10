@@ -78,7 +78,7 @@ void CalculateGodograph (
 		// Расчёт времени прихода АВ к текущей точке наблюдений
 		if (FormationCounter != 0) 
 		{
-			// Расчёт АВ для 2 и более пластов
+			// Расчёт АВ и глубины залегания сейсмодатчика для второго и далее по счёту пластов
 			ArrivalTime = 0;
 			/* 	Дословный перевод curFormation - current formation - текущий пласт */
 			for (int curFormation = 0; curFormation < FormationCounter; curFormation++) 
@@ -86,15 +86,19 @@ void CalculateGodograph (
 				ArrivalTime += FormationsMassive[curFormation].FormationCapacity / FormationsMassive[curFormation].FormationAcousticSpeed;
 			}
 			
-			//
+			// Ветвление для определения стратегии расчёта значений времени прихода АВ
+			/*	для последнего пласта, ввиду его некоторых особенностей, 
+				значение прихода АВ считается по разному*/
 			if (FormationCounter < FormationsCount - 1) 
 			{
+				// Расчёт времени прихода для пластов от 2 до последнего
 				ArrivalTime += 	(Depth - (CurrentFormationDepth - FormationsMassive[FormationCounter].FormationCapacity))
 								/ 
 								FormationsMassive[FormationCounter].FormationAcousticSpeed;
 				}
 			else 
 			{
+				// Расчёт времени прихода для последнего пласта
 				ArrivalTime += 	(Depth - CurrentFormationDepth)
 								/ 
 								LastFormationAcousticSpeed;
@@ -102,8 +106,10 @@ void CalculateGodograph (
 		}
 		else 
 		{
+			// Расчёт АВ и глубины залегания сейсмодатчика для первого пласта
 			ArrivalTime = Depth / FormationsMassive[0].FormationAcousticSpeed;
 		}
+		// Присвоение текущему экземпляру массива структуры TGodographData расчитанных значений
 		GodographDataMassive[c].Depth = Depth;
 		GodographDataMassive[c].ArrivalTime = ArrivalTime;
 	}
