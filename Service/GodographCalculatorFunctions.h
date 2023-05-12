@@ -97,7 +97,7 @@ void CalculateGodograph (
 				ArrivalTime += 	(Depth - (CurrentFormationDepth - FormationsMassive[FormationCounter].FormationCapacity))
 								/ 
 								FormationsMassive[FormationCounter].FormationAcousticSpeed;
-				}
+			}
 			else 
 			{
 				// Расчёт времени прихода для последнего пласта

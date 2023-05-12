@@ -24,7 +24,9 @@ void RecordGodographDataValues
 									// Массив с информацией о рассчитанных значениях
 									TGodographData *GodographDataMassive,
 									// Координата Y (для Surfer)
-									double CoordY
+									double CoordY,
+									// Значение глубины скважины (для Surfer)
+									double WellDepth
 								) 
 {
 	// I. Запись Excel-ориентированного файла
@@ -70,6 +72,9 @@ void RecordGodographDataValues
 		fprintf(FilePointerExc, "0\t%lf\n", DepthCounter);
 		fprintf(FilePointerExc, "1\t%lf\n", DepthCounter);
 	} 
+	fprintf(FilePointerExc, "2\t1\n");
+	fprintf(FilePointerExc, "0\t%lf\n", WellDepth);
+	fprintf(FilePointerExc, "1\t%lf\n", WellDepth);
 	
 	fclose(FilePointerSurf_Form);
 	
@@ -79,7 +84,12 @@ void RecordGodographDataValues
 	
 	for (int c = 0; c < ExplorationPointsCount; c++) 
 	{
-		fprintf(FilePointerExc, "%lf\t%lf\t%lf\n", GodographDataMassive[c].Depth, CoordY, GodographDataMassive[c].ArrivalTime);
+		/* 	Для правильного отображения в Surfer координата У помечена как 
+			ассоциированная с абциссой, значение глубины с ориданатой
+			значение глубины дополнительно помножено на -1 для построения графика 
+			снизу-вверх как разреза (для корректной работы в Surfer нужно несколько 
+			образцов данного файла генерируемых после работы программы)*/
+		fprintf(FilePointerExc, "%lf\t%lf\t%lf\n", CoordY, GodographDataMassive[c].Depth * (0-1), GodographDataMassive[c].ArrivalTime);
 	}
 	
 	fclose(FilePointerSurf_Data);
