@@ -69,12 +69,18 @@ void RecordGodographDataValues
 	{
 		DepthCounter += FormationsMassive[c].FormationCapacity;
 		fprintf(FilePointerExc, "2\t1\n");
-		fprintf(FilePointerExc, "0\t%lf\n", DepthCounter);
-		fprintf(FilePointerExc, "1\t%lf\n", DepthCounter);
+		fprintf(FilePointerExc, "0\t%lf\n", DepthCounter * (0 - 1));
+		fprintf(FilePointerExc, "1\t%lf\n", DepthCounter * (0 - 1));
 	} 
 	fprintf(FilePointerExc, "2\t1\n");
-	fprintf(FilePointerExc, "0\t%lf\n", WellDepth);
-	fprintf(FilePointerExc, "1\t%lf\n", WellDepth);
+	fprintf(FilePointerExc, "0\t%lf\n", WellDepth * (0 - 1));
+	fprintf(FilePointerExc, "1\t%lf\n", WellDepth * (0 - 1));
+	fprintf(FilePointerExc, "2\t1\n");
+	fprintf(FilePointerExc, "0\t%lf\n", 0);
+	fprintf(FilePointerExc, "0\t%lf\n", WellDepth * (0 - 1));
+	fprintf(FilePointerExc, "2\t1\n");
+	fprintf(FilePointerExc, "1\t%lf\n", 0);
+	fprintf(FilePointerExc, "1\t%lf\n", WellDepth * (0 - 1));
 	
 	fclose(FilePointerSurf_Form);
 	
