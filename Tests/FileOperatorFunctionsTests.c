@@ -85,7 +85,7 @@ void test_1 ()
 	e_data[5].ArrivalTime = 0.2625;
 	
 	printf("Тест №1:\n");
-	RecordGodographDataValues(800, formCount, Formations, countData, e_data, 20);
+	RecordGodographDataValues(800, formCount, Formations, countData, e_data, 20, 200);
 	printf("\nНеобходимо просмотреть результат выполнения.\n");
 	getch();
 }
@@ -128,7 +128,7 @@ void test_2 ()
 	e_data[9].ArrivalTime = 0.73452381;
 	
 	printf("Тест №2:\n");
-	RecordGodographDataValues(1200, formCount, Formations, countData, e_data, 100);
+	RecordGodographDataValues(1200, formCount, Formations, countData, e_data, 100, 550);
 	printf("\nНеобходимо просмотреть результат выполнения.\n");
 	getch();
 }
@@ -157,7 +157,7 @@ void test_3()
 	e_data[4].ArrivalTime = 0.1;
 	
 	printf("Тест №3:\n");
-	RecordGodographDataValues(500, formCount, Formations, countData, e_data, 50);
+	RecordGodographDataValues(500, formCount, Formations, countData, e_data, 50, 75);
 	printf("\nНеобходимо просмотреть результат выполнения.\n");
 	getch();
 }
